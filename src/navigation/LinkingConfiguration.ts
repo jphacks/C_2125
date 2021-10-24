@@ -9,9 +9,10 @@ import * as Linking from 'expo-linking'
 import { RootStackParamList } from './types'
 
 const linking: LinkingOptions<RootStackParamList> = {
-  prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
+      Modal: 'modal',
+      NotFound: '*',
       Root: {
         screens: {
           TabOne: {
@@ -26,10 +27,9 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
         },
       },
-      Modal: 'modal',
-      NotFound: '*',
     },
   },
+  prefixes: [Linking.makeUrl('/')],
 }
 
 export default linking

@@ -1,18 +1,20 @@
 import * as React from 'react'
 import { StyleSheet } from 'react-native'
-import EditScreenInfo from '../components/EditScreenInfo'
+import { EditScreenInfo } from '../components/EditScreenInfo'
 import { Text, View } from '../components/Themed'
 import { RootTabScreenProps } from '../navigation/types'
 
-export default function ChatScreen({ navigation }: RootTabScreenProps<'Chat'>) {
+export const ChatScreen = ({ navigation }: RootTabScreenProps<'Chat'>) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Chat Screen です</Text>
+
       <View
-        style={styles.separator}
-        lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
+        lightColor="#eee"
+        style={styles.separator}
       />
+
       <EditScreenInfo path="/screens/ChatScreen.tsx" />
     </View>
   )
@@ -20,17 +22,17 @@ export default function ChatScreen({ navigation }: RootTabScreenProps<'Chat'>) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
+  },
+  separator: {
+    height: 1,
+    marginVertical: 30,
+    width: '80%',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 })

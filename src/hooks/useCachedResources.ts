@@ -8,9 +8,9 @@ export default function useCachedResources() {
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
-    async function loadResourcesAndDataAsync() {
+    const loadResourcesAndDataAsync = async () => {
       try {
-        SplashScreen.preventAutoHideAsync()
+        await SplashScreen.preventAutoHideAsync()
 
         // Load fonts
         await Font.loadAsync({
@@ -22,11 +22,11 @@ export default function useCachedResources() {
         console.warn(e)
       } finally {
         setLoadingComplete(true)
-        SplashScreen.hideAsync()
+        await SplashScreen.hideAsync()
       }
     }
 
-    loadResourcesAndDataAsync()
+    void loadResourcesAndDataAsync()
   }, [])
 
   return isLoadingComplete

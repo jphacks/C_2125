@@ -1,0 +1,100 @@
+{
+  "plugins": ["sort-keys-fix"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:import/react",
+    "plugin:react/all",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "./"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "rules": {
+    // eslint
+    "func-style": ["error", "expression"],
+    "no-warning-comments": "warn",
+    "one-var": "off",
+    "sort-imports": "off",
+    "no-undef": "off",
+    "no-shadow": "off",
+    "no-void": ["error", { "allowAsStatement": true }],
+    "no-console": ["error", { "allow": ["warn", "error", "info", "debug"] }],
+
+    // @typescript-eslint
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/prefer-readonly-parameter-types": "off",
+    "@typescript-eslint/no-type-alias": "off",
+    "@typescript-eslint/no-magic-numbers": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/no-shadow": "error",
+
+    // sort-keys-fix
+    "sort-keys-fix/sort-keys-fix": "error",
+
+    // @typescript-eslint
+    "@typescript-eslint/naming-convention": "off",
+
+    // react
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react/jsx-no-literals": "off",
+    "react/no-multi-comp": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/display-name": "off",
+    "react/forbid-component-props": "off",
+
+    "@typescript-eslint/no-namespace": ["error", { "allowDeclarations": true }],
+
+    // import
+    // react-native を import するときになんかエラーが出る
+    "import/namespace": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx", "**/*.jsx"],
+      "rules": {
+        // react
+        "react/jsx-newline": "error",
+        "react/jsx-one-expression-per-line": "off",
+        "react/jsx-indent": "off",
+        "react/jsx-max-props-per-line": "off",
+        "react/jsx-indent-props": "off",
+        "react/jsx-max-depth": ["warn", { "max": 5 }]
+      }
+    }
+  ]
+}
