@@ -5,16 +5,10 @@
  */
 import { FontAwesome } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-} from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react'
-import { ColorSchemeName, Pressable } from 'react-native'
-import Colors from '../constants/Colors'
-import useColorScheme from '../hooks/useColorScheme'
+import { Pressable } from 'react-native'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
 import { TabOneScreen } from '../screens/TabOneScreen'
@@ -26,16 +20,9 @@ import {
   RootTabScreenProps,
 } from './types'
 
-export const Navigation = ({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName
-}) => {
+export const Navigation = () => {
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-    >
+    <NavigationContainer linking={LinkingConfiguration}>
       <RootNavigator />
     </NavigationContainer>
   )
@@ -76,14 +63,14 @@ const RootNavigator = () => {
 const BottomTab = createBottomTabNavigator<RootTabParamList>()
 
 const BottomTabNavigator = () => {
-  const colorScheme = useColorScheme()
-
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}
+      screenOptions={
+        {
+          // tabBarActiveTintColor: Colors[colorScheme].tint,
+        }
+      }
     >
       <BottomTab.Screen
         component={TabOneScreen}
@@ -101,7 +88,7 @@ const BottomTabNavigator = () => {
                 })}
               >
                 <FontAwesome
-                  color={Colors[colorScheme].text}
+                  // color={Colors[colorScheme].text}
                   name="info-circle"
                   size={25}
                   style={{ marginRight: 15 }}
@@ -114,7 +101,7 @@ const BottomTabNavigator = () => {
             ),
             title: 'Chat',
           }),
-          [colorScheme],
+          [],
         )}
       />
 
@@ -134,7 +121,7 @@ const BottomTabNavigator = () => {
               })}
             >
               <FontAwesome
-                color={Colors[colorScheme].text}
+                // color={Colors[colorScheme].text}
                 name="info-circle"
                 size={25}
                 style={{ marginRight: 15 }}
