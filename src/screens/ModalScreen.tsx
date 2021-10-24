@@ -1,19 +1,17 @@
 import { StatusBar } from 'expo-status-bar'
+import { Text, View } from 'native-base'
 import * as React from 'react'
-import { Platform, StyleSheet } from 'react-native'
+import { Platform } from 'react-native'
 import { EditScreenInfo } from '../components/EditScreenInfo'
-import { Text, View } from '../components/Themed'
 
 export const ModalScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Modal</Text>
+    <View alignItems="center" flex={1} justifyContent="center">
+      <Text fontSize={20} fontWeight="bold">
+        Modal
+      </Text>
 
-      <View
-        darkColor="rgba(255,255,255,0.1)"
-        lightColor="#eee"
-        style={styles.separator}
-      />
+      <View h="1px" my="30px" w="80%" />
 
       <EditScreenInfo path="/screens/ModalScreen.tsx" />
 
@@ -23,20 +21,3 @@ export const ModalScreen = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-  separator: {
-    height: 1,
-    marginVertical: 30,
-    width: '80%',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-})

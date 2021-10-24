@@ -1,84 +1,38 @@
 import * as WebBrowser from 'expo-web-browser'
+import { Pressable, Text, View } from 'native-base'
 import React from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import Colors from '../constants/Colors'
-import { MonoText } from './StyledText'
-import { Text, View } from './Themed'
-
-export const EditScreenInfo = ({ path }: { path: string }) => {
-  return (
-    <View>
-      <View style={styles.getStartedContainer}>
-        <Text
-          darkColor="rgba(255,255,255,0.8)"
-          lightColor="rgba(0,0,0,0.8)"
-          style={styles.getStartedText}
-        >
-          Open up the code for this screen:
-        </Text>
-
-        <View
-          darkColor="rgba(255,255,255,0.05)"
-          lightColor="rgba(0,0,0,0.05)"
-          style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-        >
-          <MonoText>{path}</MonoText>
-        </View>
-
-        <Text
-          darkColor="rgba(255,255,255,0.8)"
-          lightColor="rgba(0,0,0,0.8)"
-          style={styles.getStartedText}
-        >
-          Change any of the text, save the file, and your app will automatically
-          update.
-        </Text>
-      </View>
-
-      <View style={styles.helpContainer}>
-        <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-          <Text lightColor={Colors.light.tint} style={styles.helpLinkText}>
-            Tap here if your app doesn&apos;t automatically update after making
-            changes
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  )
-}
 
 const handleHelpPress = () => {
   return WebBrowser.openBrowserAsync(
     'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet',
   )
 }
+export const EditScreenInfo = ({ path }: { path: string }) => {
+  return (
+    <View>
+      <View alignItems="center" mx={50}>
+        <Text fontSize={17} lineHeight={24} textAlign="center">
+          Open up the code for this screen:
+        </Text>
 
-const styles = StyleSheet.create({
-  codeHighlightContainer: {
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
-  },
-  getStartedText: {
-    fontSize: 17,
-    lineHeight: 24,
-    textAlign: 'center',
-  },
-  helpContainer: {
-    alignItems: 'center',
-    marginHorizontal: 20,
-    marginTop: 15,
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    textAlign: 'center',
-  },
-  homeScreenFilename: {
-    marginVertical: 7,
-  },
-})
+        <View borderRadius={3} my={7} px={1}>
+          <Text>{path}</Text>
+        </View>
+
+        <Text fontSize={17} lineHeight={24} textAlign="center">
+          Change any of the text, save the file, and your app will automatically
+          update.
+        </Text>
+      </View>
+
+      <View alignItems="center" my={5} pt={15}>
+        <Pressable onPress={handleHelpPress} py={15}>
+          <Text textAlign="center">
+            Tap here if your app doesn&apos;t automatically update after making
+            changes
+          </Text>
+        </Pressable>
+      </View>
+    </View>
+  )
+}
