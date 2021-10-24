@@ -1,11 +1,11 @@
 {
   "name": "jphacks-C_2125",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
-  "repository": "https://github.com/jphacks/C_2125.git",
-  "author": "YutaUra <yuuta3594@outlook.jp>",
-  "license": "MIT",
   "private": true,
+  "repository": "https://github.com/jphacks/C_2125.git",
+  "license": "MIT",
+  "author": "YutaUra <yuuta3594@outlook.jp>",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -49,15 +49,16 @@
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.9",
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
+    "@types/react": "~17.0.21",
+    "@types/react-native": "~0.64.12",
     "commitizen": "^4.2.4",
     "git-cz": "^4.8.0",
     "husky": "^7.0.4",
-    "@babel/core": "^7.12.9",
-    "@types/react": "~17.0.21",
-    "@types/react-native": "~0.64.12",
     "jest-expo": "~43.0.0",
+    "prettier": "^2.4.1",
     "typescript": "~4.3.5"
   }
 }
