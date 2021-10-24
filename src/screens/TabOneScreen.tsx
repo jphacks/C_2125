@@ -1,20 +1,20 @@
 import * as React from 'react'
 import { StyleSheet } from 'react-native'
-import EditScreenInfo from '../components/EditScreenInfo'
+import { EditScreenInfo } from '../components/EditScreenInfo'
 import { Text, View } from '../components/Themed'
 import { RootTabScreenProps } from '../navigation/types'
 
-export default function TabOneScreen({
-  navigation,
-}: RootTabScreenProps<'TabOne'>) {
+export const TabOneScreen = ({ navigation }: RootTabScreenProps<'TabOne'>) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>tomokazuです</Text>
+
       <View
-        style={styles.separator}
-        lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
+        lightColor="#eee"
+        style={styles.separator}
       />
+
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />
     </View>
   )
@@ -22,17 +22,17 @@ export default function TabOneScreen({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
+  },
+  separator: {
+    height: 1,
+    marginVertical: 30,
+    width: '80%',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 })

@@ -8,29 +8,29 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import {
   DarkTheme,
   DefaultTheme,
-  NavigationContainer
+  NavigationContainer,
 } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react'
 import { ColorSchemeName, Pressable } from 'react-native'
 import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
-import ModalScreen from '../screens/ModalScreen'
-import NotFoundScreen from '../screens/NotFoundScreen'
-import TabOneScreen from '../screens/TabOneScreen'
-import TabTwoScreen from '../screens/TabTwoScreen'
+import { ModalScreen } from '../screens/ModalScreen'
+import { NotFoundScreen } from '../screens/NotFoundScreen'
+import { TabOneScreen } from '../screens/TabOneScreen'
+import { TabTwoScreen } from '../screens/TabTwoScreen'
 import LinkingConfiguration from './LinkingConfiguration'
 import {
   RootStackParamList,
   RootTabParamList,
-  RootTabScreenProps
+  RootTabScreenProps,
 } from './types'
 
-export default function Navigation({
+export const Navigation = ({
   colorScheme,
 }: {
   colorScheme: ColorSchemeName
-}) {
+}) => {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
@@ -47,21 +47,23 @@ export default function Navigation({
  */
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
-function RootNavigator() {
+const RootNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Root"
         component={BottomTabNavigator}
+        name="Root"
         options={{ headerShown: false }}
       />
+
       <Stack.Screen
-        name="NotFound"
         component={NotFoundScreen}
+        name="NotFound"
         options={{ title: 'Oops!' }}
       />
+
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen component={ModalScreen} name="Modal" />
       </Stack.Group>
     </Stack.Navigator>
   )
@@ -73,7 +75,7 @@ function RootNavigator() {
  */
 const BottomTab = createBottomTabNavigator<RootTabParamList>()
 
-function BottomTabNavigator() {
+const BottomTabNavigator = () => {
   const colorScheme = useColorScheme()
 
   return (
@@ -84,58 +86,74 @@ function BottomTabNavigator() {
       }}
     >
       <BottomTab.Screen
-        name="Chat"
         component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'Chat'>) => ({
-          title: 'Chat',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        name="Chat"
+        options={React.useCallback(
+          ({ navigation }: RootTabScreenProps<'Chat'>) => ({
+            // eslint-disable-next-line react/no-unstable-nested-components
+            headerRight: () => (
+              <Pressable
+                // eslint-disable-next-line react/jsx-no-bind
+                onPress={() => navigation.navigate('Modal')}
+                // eslint-disable-next-line react/jsx-no-bind
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}
+              >
+                <FontAwesome
+                  color={Colors[colorScheme].text}
+                  name="info-circle"
+                  size={25}
+                  style={{ marginRight: 15 }}
+                />
+              </Pressable>
+            ),
+            // eslint-disable-next-line react/no-unstable-nested-components
+            tabBarIcon: (props: { color: string }) => (
+              <TabBarIcon {...props} name="code" />
+            ),
+            title: 'Chat',
+          }),
+          [colorScheme],
+        )}
+      />
+
+      <BottomTab.Screen
+        component={TabOneScreen}
+        name="TabOne"
+        // eslint-disable-next-line react/jsx-no-bind
+        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+          // eslint-disable-next-line react/no-unstable-nested-components
           headerRight: () => (
             <Pressable
+              // eslint-disable-next-line react/jsx-no-bind
               onPress={() => navigation.navigate('Modal')}
+              // eslint-disable-next-line react/jsx-no-bind
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}
             >
               <FontAwesome
+                color={Colors[colorScheme].text}
                 name="info-circle"
                 size={25}
-                color={Colors[colorScheme].text}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
           ),
+          // eslint-disable-next-line react/no-unstable-nested-components
+          tabBarIcon: ({ color }) => <TabBarIcon color={color} name="code" />,
+          title: 'Tab One',
         })}
       />
 
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
-      />
-      <BottomTab.Screen
-        name="TabTwo"
         component={TabTwoScreen}
+        name="TabTwo"
         options={{
+          // eslint-disable-next-line react/no-unstable-nested-components
+          tabBarIcon: ({ color }) => <TabBarIcon color={color} name="code" />,
           title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -145,9 +163,9 @@ function BottomTabNavigator() {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-function TabBarIcon(props: {
+const TabBarIcon = (props: {
   name: React.ComponentProps<typeof FontAwesome>['name']
   color: string
-}) {
+}) => {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />
 }
