@@ -3,22 +3,17 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react'
-import { Pressable } from 'react-native'
+import { chatScreenOptions } from '../screens/ChatScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
-import { TabOneScreen } from '../screens/TabOneScreen'
-import { TabTwoScreen } from '../screens/TabTwoScreen'
+import { TabOneScreen, tabOneScreenOptions } from '../screens/TabOneScreen'
+import { TabTwoScreen, tabTwoScreenOptions } from '../screens/TabTwoScreen'
 import LinkingConfiguration from './LinkingConfiguration'
-import {
-  RootStackParamList,
-  RootTabParamList,
-  RootTabScreenProps,
-} from './types'
+import { RootStackParamList, RootTabParamList } from './types'
 
 export const Navigation = () => {
   return (
@@ -75,84 +70,20 @@ const BottomTabNavigator = () => {
       <BottomTab.Screen
         component={TabOneScreen}
         name="Chat"
-        options={React.useCallback(
-          ({ navigation }: RootTabScreenProps<'Chat'>) => ({
-            // eslint-disable-next-line react/no-unstable-nested-components
-            headerRight: () => (
-              <Pressable
-                // eslint-disable-next-line react/jsx-no-bind
-                onPress={() => navigation.navigate('Modal')}
-                // eslint-disable-next-line react/jsx-no-bind
-                style={({ pressed }) => ({
-                  opacity: pressed ? 0.5 : 1,
-                })}
-              >
-                <FontAwesome
-                  // color={Colors[colorScheme].text}
-                  name="info-circle"
-                  size={25}
-                  style={{ marginRight: 15 }}
-                />
-              </Pressable>
-            ),
-            // eslint-disable-next-line react/no-unstable-nested-components
-            tabBarIcon: (props: { color: string }) => (
-              <TabBarIcon {...props} name="code" />
-            ),
-            title: 'Chat',
-          }),
-          [],
-        )}
+        options={chatScreenOptions}
       />
 
       <BottomTab.Screen
         component={TabOneScreen}
         name="TabOne"
-        // eslint-disable-next-line react/jsx-no-bind
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          // eslint-disable-next-line react/no-unstable-nested-components
-          headerRight: () => (
-            <Pressable
-              // eslint-disable-next-line react/jsx-no-bind
-              onPress={() => navigation.navigate('Modal')}
-              // eslint-disable-next-line react/jsx-no-bind
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                // color={Colors[colorScheme].text}
-                name="info-circle"
-                size={25}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-          // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: ({ color }) => <TabBarIcon color={color} name="code" />,
-          title: 'Tab One',
-        })}
+        options={tabOneScreenOptions}
       />
 
       <BottomTab.Screen
         component={TabTwoScreen}
         name="TabTwo"
-        options={{
-          // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: ({ color }) => <TabBarIcon color={color} name="code" />,
-          title: 'Tab Two',
-        }}
+        options={tabTwoScreenOptions}
       />
     </BottomTab.Navigator>
   )
-}
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-const TabBarIcon = (props: {
-  name: React.ComponentProps<typeof FontAwesome>['name']
-  color: string
-}) => {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />
 }

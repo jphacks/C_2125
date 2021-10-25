@@ -1,6 +1,7 @@
 import { Text, View } from 'native-base'
 import * as React from 'react'
 import { EditScreenInfo } from '../components/EditScreenInfo'
+import { TabBarIcon } from '../components/TabBarIcon'
 
 export const TabTwoScreen = () => {
   return (
@@ -14,4 +15,11 @@ export const TabTwoScreen = () => {
       <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
     </View>
   )
+}
+
+export const tabTwoScreenOptions = {
+  tabBarIcon: ({ color }: { color: string }) => (
+    <TabBarIcon color={color} name="code" />
+  ),
+  title: 'Tab Two',
 }
