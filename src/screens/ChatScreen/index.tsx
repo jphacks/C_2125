@@ -1,23 +1,16 @@
 import { FontAwesome } from '@expo/vector-icons'
-import { Pressable, Text, View } from 'native-base'
+import { Pressable } from 'native-base'
 import { useCallback } from 'react'
 import { PressableStateCallbackType } from 'react-native'
-import { EditScreenInfo } from '../components/EditScreenInfo'
-import { TabBarIcon } from '../components/TabBarIcon'
-import { RootTabScreenProps } from '../navigation/types'
+import { TabBarIcon } from '../../components/TabBarIcon'
+import { RootTabScreenProps } from '../../navigation/types'
+import { Component } from './Component'
+import { useChatScreen } from './hooks'
 
-export const ChatScreen = ({ navigation }: RootTabScreenProps<'Chat'>) => {
-  return (
-    <View alignItems="center" flex={1} justifyContent="center">
-      <Text fontSize={20} fontWeight="bold">
-        Chat Screen です
-      </Text>
+export const ChatScreen = () => {
+  const { testValue } = useChatScreen()
 
-      <View h="1px" my="30px" w="80%" />
-
-      <EditScreenInfo path="/screens/ChatScreen.tsx" />
-    </View>
-  )
+  return <Component testValue={testValue} />
 }
 
 const HeaderRight = ({ navigation }: RootTabScreenProps<'Chat'>) => {
