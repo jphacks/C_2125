@@ -1,6 +1,6 @@
 import { FontAwesome } from '@expo/vector-icons'
 import { Pressable, Text, View } from 'native-base'
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { PressableStateCallbackType } from 'react-native'
 import { EditScreenInfo } from '../components/EditScreenInfo'
 import { TabBarIcon } from '../components/TabBarIcon'

@@ -96,5 +96,6 @@
         "react/jsx-max-depth": ["warn", { "max": 5 }]
       }
     }
-  ]
+  ],
+  "ignorePatterns": ["babel.config.js"]
 }

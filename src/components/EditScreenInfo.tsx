@@ -1,6 +1,5 @@
 import * as WebBrowser from 'expo-web-browser'
 import { Pressable, Text, View } from 'native-base'
-import React from 'react'
 
 const handleHelpPress = () => {
   return WebBrowser.openBrowserAsync(

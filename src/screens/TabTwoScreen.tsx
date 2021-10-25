@@ -1,5 +1,4 @@
 import { Text, View } from 'native-base'
-import * as React from 'react'
 import { EditScreenInfo } from '../components/EditScreenInfo'
 import { TabBarIcon } from '../components/TabBarIcon'
 
