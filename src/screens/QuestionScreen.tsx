@@ -15,11 +15,12 @@ export const QuestionScreen = ({ navigation, route }: ChatStackScreenProps<'Ques
         _text={{
           fontSize: "2xl"
         }}
+        onPress={() => console.log("back")}
       > 
         戻る
       </Button>
       <Stack alignItems="center" space={5}>
-        <Heading　size="xl" mt="10%">
+        <Heading　size="xl" mt="5%">
           今日の質問
         </Heading>
         <Box
@@ -38,17 +39,16 @@ export const QuestionScreen = ({ navigation, route }: ChatStackScreenProps<'Ques
         </Box>
       </Stack>
       {/* ref: https://docs.nativebase.io/button */}
-      <Button height="20%" mt="6%"
+      <Button height="20%" mt="11%"
         endIcon={<Icon as={Ionicons} name="arrow-forward" size="xl" />} colorScheme="blue"
         _text={{
-          fontSize: "4xl"
+          fontSize: "3xl"
         }}
+        onPress={() => console.log("ok")}
       >
         質問に答える
       </Button>
       
     </View>
-
-    
   )
 }
