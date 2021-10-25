@@ -6,7 +6,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import * as React from 'react'
 import { chatScreenOptions } from '../screens/ChatScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'

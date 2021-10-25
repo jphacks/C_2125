@@ -1,5 +1,5 @@
 import { Pressable, Text, View } from 'native-base'
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { RootStackScreenProps } from '../navigation/types'
 
 export const NotFoundScreen = ({

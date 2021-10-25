@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
 import { Text, View } from 'native-base'
-import * as React from 'react'
 import { Platform } from 'react-native'
 import { EditScreenInfo } from '../components/EditScreenInfo'
 
