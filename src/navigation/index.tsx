@@ -6,7 +6,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { chatScreenOptions } from '../screens/ChatScreen'
+import { ChatScreen, chatScreenOptions } from '../screens/ChatScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
 import { TabOneScreen, tabOneScreenOptions } from '../screens/TabOneScreen'
@@ -67,7 +67,7 @@ const BottomTabNavigator = () => {
       }
     >
       <BottomTab.Screen
-        component={TabOneScreen}
+        component={ChatScreen}
         name="Chat"
         options={chatScreenOptions}
       />
