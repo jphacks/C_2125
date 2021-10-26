@@ -1,19 +1,7 @@
-import { StatusBar } from 'expo-status-bar'
-import {
-  Text,
-  View,
-  Button,
-  Icon,
-  Box,
-  Stack,
-  Heading,
-  Image,
-} from 'native-base'
-import { useState } from 'react'
-import { Platform } from 'react-native'
-import { EditScreenInfo } from '../components/EditScreenInfo'
-import { ChatStackScreenProps } from '../navigation/types'
 import { Ionicons } from '@expo/vector-icons'
+import { Box, Button, Heading, Icon, Image, Stack, View } from 'native-base'
+import { useCallback, useState } from 'react'
+import { ChatStackScreenProps } from '../navigation/types'
 
 export const QuestionScreen = ({
   navigation,
@@ -39,57 +27,68 @@ export const QuestionScreen = ({
     time = '夜'
   }
 
+  const handlePressBack = useCallback(() => {
+    // TODO: チャットの画面に遷移させる
+  }, [])
+
+  const handlePressAnswer = useCallback(() => {
+    // TODO: 動画の画面に遷移させる
+  }, [])
+
   return (
     <View>
       <Button
-        startIcon={<Icon as={Ionicons} name="arrow-back" />}
-        colorScheme="blue"
-        mr="70%"
         _text={{
           fontSize: '2xl',
         }}
-        //　TODO: チャットの画面に遷移させる
-        onPress={() => console.log('back')}
+        colorScheme="blue"
+        mr="70%"
+        onPress={handlePressBack}
+        startIcon={<Icon as={Ionicons} name="arrow-back" />}
       >
         戻る
       </Button>
+
       <Stack alignItems="center" space={3}>
-        <Heading size="xl" mt="5%">
-          {year}年 {month}月{day}日、{time}の質問
+        <Heading mt="5%" size="xl">
+          {`${year}年 ${month}月${day}日、${time}の質問`}
         </Heading>
+
         <Box
-          bg="blue.100"
-          rounded="3xl"
-          p="8"
           _text={{
             fontSize: '2xl',
             fontWeight: 'bold',
             letterSpacing: 'lg',
           }}
+          bg="blue.100"
+          p="8"
+          rounded="3xl"
           shadow={5}
         >
           {route.params.text}
         </Box>
+
         <Image
           alt="もも"
-          w="22%"
           h="25%"
           source={{
             uri: 'https://3.bp.blogspot.com/-Yvy09WjuJSs/Uxa-7Y_O1wI/AAAAAAAAd1A/SPVxb6GfFRA/s800/character_peach.png',
           }}
+          w="22%"
         />
       </Stack>
+
       {/* ref: https://docs.nativebase.io/button */}
+
       <Button
-        height="15%"
-        mt="0"
-        endIcon={<Icon as={Ionicons} name="arrow-forward" size="xl" />}
-        colorScheme="blue"
         _text={{
           fontSize: '3xl',
         }}
-        //　TODO: 動画の画面に遷移させる
-        onPress={() => console.log('ok')}
+        colorScheme="blue"
+        endIcon={<Icon as={Ionicons} name="arrow-forward" size="xl" />}
+        height="15%"
+        mt="0"
+        onPress={handlePressAnswer}
       >
         質問に答える
       </Button>

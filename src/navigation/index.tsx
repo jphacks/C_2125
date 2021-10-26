@@ -9,15 +9,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { ChatScreen, chatScreenOptions } from '../screens/ChatScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
+import { QuestionScreen } from '../screens/QuestionScreen'
 import { TabOneScreen, tabOneScreenOptions } from '../screens/TabOneScreen'
 import { TabTwoScreen, tabTwoScreenOptions } from '../screens/TabTwoScreen'
-import { QuestionScreen } from '../screens/QuestionScreen'
 import LinkingConfiguration from './LinkingConfiguration'
 import {
+  ChatStackParamList,
   RootStackParamList,
   RootTabParamList,
-  RootTabScreenProps,
-  ChatStackParamList,
 } from './types'
 
 export const Navigation = () => {
@@ -101,10 +100,10 @@ const ChatNavigation = () => {
 
       <ChatNavigator.Screen
         component={QuestionScreen}
-        name="Question"
         initialParams={{
           text: '僕のあだ名はモモってゆうんだ！〇〇さんは昔どんなあだ名で呼ばれてたの？一番いいあだ名だなって思った人のあだ名教えてよ！',
         }}
+        name="Question"
       />
     </ChatNavigator.Navigator>
   )
