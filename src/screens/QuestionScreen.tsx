@@ -20,12 +20,7 @@ export const QuestionScreen = ({
   // 昼ならTrue、夜ならFalse
   const isMorning = hour <= 12 // 0 ~ 12(12含む) 時までを昼として捉える場合
 
-  let time
-  if (isMorning) {
-    time = '朝'
-  } else {
-    time = '夜'
-  }
+  const time = isMorning ? '朝' : '夜'
 
   const handlePressBack = useCallback(() => {
     // TODO: チャットの画面に遷移させる
