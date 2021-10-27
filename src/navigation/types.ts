@@ -17,9 +17,12 @@ declare global {
   }
 }
 
+export type PermissionType = 'camera' | 'microphone'
+
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined
   Modal: undefined
+  RequestPermissionModalScreen: { type: PermissionType }
   NotFound: undefined
 }
 
@@ -30,6 +33,7 @@ export type RootTabParamList = {
   TabOne: undefined
   TabTwo: undefined
   Chat: undefined
+  QuestionCamera: { text: string }
 }
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
