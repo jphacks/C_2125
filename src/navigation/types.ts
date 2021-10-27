@@ -37,3 +37,14 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
     BottomTabScreenProps<RootTabParamList, Screen>,
     NativeStackScreenProps<RootStackParamList>
   >
+
+export type ChatStackParamList = {
+  Home: undefined
+  Question: { text: string }
+}
+
+export type ChatStackScreenProps<Screen extends keyof ChatStackParamList> =
+  CompositeScreenProps<
+    NativeStackScreenProps<ChatStackParamList, Screen>,
+    RootTabScreenProps<'Chat'>
+  >

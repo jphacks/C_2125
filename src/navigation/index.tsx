@@ -9,10 +9,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { ChatScreen, chatScreenOptions } from '../screens/ChatScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
+import { QuestionScreen } from '../screens/QuestionScreen'
 import { TabOneScreen, tabOneScreenOptions } from '../screens/TabOneScreen'
 import { TabTwoScreen, tabTwoScreenOptions } from '../screens/TabTwoScreen'
 import LinkingConfiguration from './LinkingConfiguration'
-import { RootStackParamList, RootTabParamList } from './types'
+import {
+  ChatStackParamList,
+  RootStackParamList,
+  RootTabParamList,
+} from './types'
 
 export const Navigation = () => {
   return (
@@ -67,7 +72,7 @@ const BottomTabNavigator = () => {
       }
     >
       <BottomTab.Screen
-        component={ChatScreen}
+        component={ChatNavigation}
         name="Chat"
         options={chatScreenOptions}
       />
@@ -84,5 +89,22 @@ const BottomTabNavigator = () => {
         options={tabTwoScreenOptions}
       />
     </BottomTab.Navigator>
+  )
+}
+
+const ChatNavigator = createNativeStackNavigator<ChatStackParamList>()
+const ChatNavigation = () => {
+  return (
+    <ChatNavigator.Navigator initialRouteName="Question">
+      <ChatNavigator.Screen component={ChatScreen} name="Home" />
+
+      <ChatNavigator.Screen
+        component={QuestionScreen}
+        initialParams={{
+          text: '僕のあだ名はモモってゆうんだ！〇〇さんは昔どんなあだ名で呼ばれてたの？一番いいあだ名だなって思った人のあだ名教えてよ！',
+        }}
+        name="Question"
+      />
+    </ChatNavigator.Navigator>
   )
 }
