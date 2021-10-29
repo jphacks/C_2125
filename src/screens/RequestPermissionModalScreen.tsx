@@ -1,6 +1,6 @@
 import { openSettings } from 'expo-linking'
 import { Link, Text, View } from 'native-base'
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { RootStackScreenProps } from '../navigation/types'
 
 export const RequestPermissionModalScreen = ({

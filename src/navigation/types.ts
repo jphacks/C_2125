@@ -46,6 +46,8 @@ export type ChatStackParamList = {
   Home: undefined
   Question: { text: string }
   EmojiSelect: undefined
+  Camera: undefined
+  CameraPreview: { uri: string }
 }
 
 export type ChatStackScreenProps<Screen extends keyof ChatStackParamList> =

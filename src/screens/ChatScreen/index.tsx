@@ -1,12 +1,9 @@
 import { FontAwesome } from '@expo/vector-icons'
+import { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import { Pressable } from 'native-base'
 import { useCallback } from 'react'
 import { PressableStateCallbackType } from 'react-native'
-import { TabBarIcon } from '../../components/TabBarIcon'
-import {
-  ChatStackScreenProps,
-  RootTabScreenProps,
-} from '../../navigation/types'
+import { ChatStackScreenProps } from '../../navigation/types'
 import { Component } from './Component'
 import { useChatScreen } from './hooks'
 
@@ -17,12 +14,20 @@ export const ChatScreen = ({ navigation }: ChatStackScreenProps<'Home'>) => {
     navigation.push('EmojiSelect')
   }, [navigation])
 
+  const goToCameraScreen = useCallback(() => {
+    navigation.push('Camera')
+  }, [navigation])
+
   return (
-    <Component onPressEmojiSelect={goToEmojiSelect} testValue={testValue} />
+    <Component
+      onPressCamera={goToCameraScreen}
+      onPressEmojiSelect={goToEmojiSelect}
+      testValue={testValue}
+    />
   )
 }
 
-const HeaderRight = ({ navigation }: RootTabScreenProps<'Chat'>) => {
+const HeaderRight = ({ navigation }: ChatStackScreenProps<'Home'>) => {
   const handlePress = useCallback(() => {
     return navigation.navigate('Modal')
   }, [navigation])
@@ -46,10 +51,9 @@ const HeaderRight = ({ navigation }: RootTabScreenProps<'Chat'>) => {
   )
 }
 
-export const chatScreenOptions = (props: RootTabScreenProps<'Chat'>) => ({
+export const chatScreenOptions = (
+  props: ChatStackScreenProps<'Home'>,
+): NativeStackNavigationOptions => ({
   headerRight: () => <HeaderRight {...props} />,
-  tabBarIcon: ({ color }: { color: string }) => (
-    <TabBarIcon color={color} name="code" />
-  ),
   title: 'Chat',
 })

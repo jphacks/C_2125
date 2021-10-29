@@ -1,5 +1,4 @@
 import { Avatar, Box, HStack, Text } from 'native-base'
-import React from 'react'
 
 type ChatMessageProps = {
   text: string

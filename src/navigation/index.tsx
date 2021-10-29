@@ -6,6 +6,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { CameraPreviewScreen } from '../screens/CameraPreviewScreen'
+import { CameraScreen } from '../screens/CameraScreen'
 import { ChatScreen, chatScreenOptions } from '../screens/ChatScreen'
 import { EmojiSelectScreen } from '../screens/EmojiSelectScreen'
 import { ModalScreen } from '../screens/ModalScreen'
@@ -72,18 +74,13 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>()
 const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      screenOptions={
-        {
-          // tabBarActiveTintColor: Colors[colorScheme].tint,
-        }
-      }
+      initialRouteName="Chat"
+      screenOptions={{
+        headerShown: false,
+        // tabBarActiveTintColor: Colors[colorScheme].tint,
+      }}
     >
-      <BottomTab.Screen
-        component={ChatNavigation}
-        name="Chat"
-        options={chatScreenOptions}
-      />
+      <BottomTab.Screen component={ChatNavigation} name="Chat" />
 
       <BottomTab.Screen
         component={TabOneScreen}
@@ -110,7 +107,11 @@ const ChatNavigator = createNativeStackNavigator<ChatStackParamList>()
 const ChatNavigation = () => {
   return (
     <ChatNavigator.Navigator initialRouteName="Home">
-      <ChatNavigator.Screen component={ChatScreen} name="Home" />
+      <ChatNavigator.Screen
+        component={ChatScreen}
+        name="Home"
+        options={chatScreenOptions}
+      />
 
       <ChatNavigator.Screen
         component={QuestionScreen}
@@ -126,6 +127,13 @@ const ChatNavigation = () => {
           name="EmojiSelect"
         />
       </ChatNavigator.Group>
+
+      <ChatNavigator.Screen component={CameraScreen} name="Camera" />
+
+      <ChatNavigator.Screen
+        component={CameraPreviewScreen}
+        name="CameraPreview"
+      />
     </ChatNavigator.Navigator>
   )
 }
