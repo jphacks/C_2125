@@ -9,13 +9,10 @@ export const EmojiSelectScreen = ({
 }: ChatStackScreenProps<'Question'>) => {
   const [em, setEm] = useState(' ')
   return (
-    <View height="100%" alignItems="center">
+    <View alignItems="center" height="100%">
       <Text fontSize="9xl">{em}</Text>
-      <EmojiSelector
-        onEmojiSelected={(emoji) => {
-          setEm(emoji)
-        }}
-      />
+
+      <EmojiSelector onEmojiSelected={setEm} />
     </View>
   )
 }

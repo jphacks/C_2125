@@ -49,7 +49,7 @@ export const Component = ({
       </ScrollView>
 
       <HStack space={1}>
-        <Button flex={1} fontSize="2xs" size="24" onPress={onPressEmojiSelect}>
+        <Button flex={1} fontSize="2xs" onPress={onPressEmojiSelect} size="24">
           <Text color="white" fontSize="2xl">
             絵文字で返信
           </Text>

@@ -1,6 +1,6 @@
+import { Button, HStack, Modal, Text } from 'native-base'
+import { useCallback, useState } from 'react'
 import EmojiSelector from 'react-native-emoji-selector'
-import { useState, useCallback } from 'react'
-import { Box, Text, Button, Modal, HStack } from 'native-base'
 
 // https://docs.nativebase.io/modal
 
@@ -21,20 +21,24 @@ export const EmojiSelectModal = ({
     if (emoji === null) return
     onSelectEmoji(emoji)
     onClose()
-  }, [onSelectEmoji, emoji])
+  }, [emoji, onSelectEmoji, onClose])
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <Modal.Content>
         <Modal.CloseButton />
+
         <Modal.Header>絵文字をせんたくする</Modal.Header>
+
         <Modal.Body>
           <HStack>
             <Text fontSize="xl">{emoji}</Text>
-            <Button onPress={handleSelectEmoji} isDisabled={emoji === null}>
+
+            <Button isDisabled={emoji === null} onPress={handleSelectEmoji}>
               確定
             </Button>
           </HStack>
+
           <EmojiSelector onEmojiSelected={setEmoji} />
         </Modal.Body>
       </Modal.Content>
