@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import EmojiSelector from 'react-native-emoji-selector'
 import { ChatStackScreenProps } from '../navigation/types'
 
-export const Emoji = ({
+export const EmojiSelectScreen = ({
   navigation,
   route,
 }: ChatStackScreenProps<'Question'>) => {
