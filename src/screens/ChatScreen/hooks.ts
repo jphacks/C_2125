@@ -73,7 +73,13 @@ const useChatSection = () => {
 
   const addChats = useCallback((newChats: Chat[]) => {
     setChats((prev) => {
-      return [...prev, ...newChats]
+      const next = [...prev]
+      newChats.forEach((chat) => {
+        if (!next.map((v) => v.id).includes(chat.id)) {
+          next.push(chat)
+        }
+      })
+      return next
     })
   }, [])
 

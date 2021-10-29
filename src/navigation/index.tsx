@@ -17,6 +17,10 @@ import { QuestionScreen } from '../screens/QuestionScreen'
 import { RequestPermissionModalScreen } from '../screens/RequestPermissionModalScreen'
 import { TabOneScreen, tabOneScreenOptions } from '../screens/TabOneScreen'
 import { TabTwoScreen, tabTwoScreenOptions } from '../screens/TabTwoScreen'
+import {
+  videoPreviewOptions,
+  VideoPreviewScreen,
+} from '../screens/VideoPreviewScreen'
 import LinkingConfiguration from './LinkingConfiguration'
 import {
   ChatStackParamList,
@@ -125,6 +129,12 @@ const ChatNavigation = () => {
         <ChatNavigator.Screen
           component={EmojiSelectScreen}
           name="EmojiSelect"
+        />
+
+        <ChatNavigator.Screen
+          component={VideoPreviewScreen}
+          name="VideoPreview"
+          options={videoPreviewOptions}
         />
       </ChatNavigator.Group>
 
