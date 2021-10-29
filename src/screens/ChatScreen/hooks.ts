@@ -50,7 +50,7 @@ const useChatSection = () => {
         groupBy(chats, (chat) => format(chat.createdAt, 'yyyy年MM月dd日')),
       ).map(([key, value]) => {
         return {
-          data: lOrderBy(value, 'createdAt', 'asc'),
+          data: lOrderBy(value, 'createdAt', 'desc'),
           title: key,
         }
       }),

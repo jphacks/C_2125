@@ -22,7 +22,7 @@ const RenderItem: ListRenderItem<
 
 const keyExtractor = (item: ChatMessageProps) => item.id
 
-const renderSectionHeader = ({
+const renderSectionFooter = ({
   section: { title },
 }: {
   section: { title: string }
@@ -60,14 +60,13 @@ export const Component = ({
       </HStack>
 
       <SectionList
-        flex={1}
+        inverted
         keyExtractor={keyExtractor}
         onEndReached={onEndReached}
-        p={4}
+        px="4"
         renderItem={renderItem}
-        renderSectionHeader={renderSectionHeader}
+        renderSectionFooter={renderSectionFooter}
         sections={sections}
-        stickySectionHeadersEnabled={false}
       />
 
       <HStack space={1}>
