@@ -1,5 +1,5 @@
 import { Button, HStack, SectionList, Text, View } from 'native-base'
-import { useCallback } from 'react'
+import { memo, useCallback } from 'react'
 import { ListRenderItem, SectionListRenderItem } from 'react-native'
 import { ChatMessage, ChatMessageProps } from '../../components/ChatMessage'
 
@@ -18,7 +18,10 @@ const RenderItem: ListRenderItem<
     onPressVideo?: (path: string) => unknown
     onPressQuestionVideo?: (path: string, text: string) => unknown
   }
-> = ({ item }) => <ChatMessage {...item} />
+> = memo(
+  ({ item }) => <ChatMessage {...item} />,
+  (prevProps, nextProps) => prevProps.item.id === nextProps.item.id,
+)
 
 const keyExtractor = (item: ChatMessageProps) => item.id
 
@@ -69,14 +72,14 @@ export const Component = ({
         sections={sections}
       />
 
-      <HStack space={1}>
-        <Button flex={1} fontSize="2xs" onPress={onPressEmojiSelect} size="24">
+      <HStack mb="1" space={1}>
+        <Button flex={1} fontSize="2xs" onPress={onPressEmojiSelect} size="16">
           <Text bold color="white" fontSize="2xl">
             絵文字で返信
           </Text>
         </Button>
 
-        <Button colorScheme="green" flex={1} onPress={onPressCamera} size="24">
+        <Button colorScheme="green" flex={1} onPress={onPressCamera} size="16">
           <Text bold color="white" fontSize="2xl">
             動画で返信
           </Text>
@@ -87,7 +90,7 @@ export const Component = ({
         colorScheme="pink"
         fontSize="2xl"
         onPress={onPressQuestion}
-        size="24"
+        size="16"
         w="100%"
       >
         <Text bold color="white" fontSize="2xl">

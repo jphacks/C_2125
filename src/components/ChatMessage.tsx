@@ -27,19 +27,19 @@ export const ChatMessage = memo(
   }: ChatMessageProps) => {
     return (
       <Box>
-        <HStack space="1">
+        <HStack alignItems="baseline" space="2">
           <Avatar
-            size="6"
+            size="8"
             source={{
               uri: userAvatarUrl,
             }}
           />
 
-          <Text alignSelf="flex-end" color="white" fontSize="xl">
+          <Text color="white" fontSize="2xl">
             {username}
           </Text>
 
-          <Text alignSelf="flex-end" color="white">
+          <Text color="white">
             {format(createdAt, 'hh:mm', { locale: ja })}
           </Text>
         </HStack>
@@ -56,10 +56,8 @@ export const ChatMessage = memo(
             />
           </Box>
         ) : item.type === 'emoji' ? (
-          <Box>
-            <Text fontSize="7xl" p="3">
-              {item.emoji}
-            </Text>
+          <Box px="7">
+            <Text fontSize="7xl">{item.emoji}</Text>
           </Box>
         ) : null}
       </Box>
