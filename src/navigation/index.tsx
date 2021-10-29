@@ -21,7 +21,7 @@ import LinkingConfiguration from './LinkingConfiguration'
 import {
   ChatStackParamList,
   RootStackParamList,
-  RootTabParamList
+  RootTabParamList,
 } from './types'
 
 export const Navigation = () => {

@@ -31,7 +31,7 @@ export const Component = ({
   onPressCamera,
   sections,
   onEndReached,
-  onPressQuestion
+  onPressQuestion,
 }: ComponentProps) => {
   return (
     <View bg="darkBlue.400" flex={1} justifyContent="center">
@@ -65,7 +65,16 @@ export const Component = ({
           </Text>
         </Button>
       </HStack>
-      <Button onPress={onPressQuestion}>質問に答える</Button>
+
+      <Button
+        colorScheme="red"
+        fontSize="2xl"
+        onPress={onPressQuestion}
+        size="24"
+        w="100%"
+      >
+        質問に答える
+      </Button>
     </View>
   )
 }

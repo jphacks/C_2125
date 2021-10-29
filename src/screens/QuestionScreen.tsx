@@ -73,16 +73,16 @@ export const QuestionScreen = ({
       {/* ref: https://docs.nativebase.io/button */}
 
       <Button
+        colorScheme="darkBlue"
         _text={{
           fontSize: '3xl',
         }}
-        colorScheme="blue"
         endIcon={<Icon as={Ionicons} name="arrow-forward" size="xl" />}
         height="24"
         mt="0"
         onPress={handlePressAnswer}
       >
-        質問に答える
+        動画を撮る
       </Button>
     </ScrollView>
   )
