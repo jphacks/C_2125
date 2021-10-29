@@ -1,7 +1,9 @@
 import { format } from 'date-fns'
 import { Avatar, Box, HStack, Text } from 'native-base'
+import { memo } from 'react'
 import { ChatItem } from '../entities/chat'
 import { ja } from '../lib/date-fns-locale'
+import { ChatQuestionVideoMessage } from './ChatQuestionVideoMessage'
 import { ChatVideoMessage } from './ChatVideoMessage'
 
 export type ChatMessageProps = {
@@ -11,45 +13,57 @@ export type ChatMessageProps = {
   createdAt: Date
   item: ChatItem
   onPressVideo?: (path: string) => unknown
+  onPressQuestionVideo?: (path: string, text: string) => unknown
 }
 
-export const ChatMessage = ({
-  item,
-  userAvatarUrl,
-  username,
-  createdAt,
-  onPressVideo,
-}: ChatMessageProps) => {
-  return (
-    <Box>
-      <HStack space="1">
-        <Avatar
-          size="6"
-          source={{
-            uri: userAvatarUrl,
-          }}
-        />
+export const ChatMessage = memo(
+  ({
+    item,
+    userAvatarUrl,
+    username,
+    createdAt,
+    onPressVideo,
+    onPressQuestionVideo,
+  }: ChatMessageProps) => {
+    return (
+      <Box>
+        <HStack space="1">
+          <Avatar
+            size="6"
+            source={{
+              uri: userAvatarUrl,
+            }}
+          />
 
-        <Text alignSelf="flex-end" color="white" fontSize="xl">
-          {username}
-        </Text>
-
-        <Text alignSelf="flex-end" color="white">
-          {format(createdAt, 'hh:mm', { locale: ja })}
-        </Text>
-      </HStack>
-
-      {item.type === 'video' ? (
-        <Box px="7">
-          <ChatVideoMessage item={item} onPress={onPressVideo} />
-        </Box>
-      ) : item.type === 'emoji' ? (
-        <Box>
-          <Text fontSize="7xl" p="3">
-            {item.emoji}
+          <Text alignSelf="flex-end" color="white" fontSize="xl">
+            {username}
           </Text>
-        </Box>
-      ) : null}
-    </Box>
-  )
-}
+
+          <Text alignSelf="flex-end" color="white">
+            {format(createdAt, 'hh:mm', { locale: ja })}
+          </Text>
+        </HStack>
+
+        {item.type === 'video' ? (
+          <Box px="7">
+            <ChatVideoMessage item={item} onPress={onPressVideo} />
+          </Box>
+        ) : item.type === 'question-video' ? (
+          <Box px="7">
+            <ChatQuestionVideoMessage
+              item={item}
+              onPress={onPressQuestionVideo}
+            />
+          </Box>
+        ) : item.type === 'emoji' ? (
+          <Box>
+            <Text fontSize="7xl" p="3">
+              {item.emoji}
+            </Text>
+          </Box>
+        ) : null}
+      </Box>
+    )
+  },
+  (prevProps, nextProps) => prevProps.id === nextProps.id,
+)

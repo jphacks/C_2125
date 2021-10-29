@@ -1,18 +1,21 @@
+import { Entypo } from '@expo/vector-icons'
 import { Camera } from 'expo-camera'
 import { VideoCodec } from 'expo-camera/build/Camera.types'
-import { Button, Spacer, Text, useToast, View } from 'native-base'
-import { useCallback, useState } from 'react'
+import { HStack, Icon, IconButton, Spacer, Text, View } from 'native-base'
+import { useCallback } from 'react'
 import { useCamera } from '../../hooks/useCamera'
 
-export const Component = () => {
-  const [type, setType] = useState(Camera.Constants.Type.front)
-  const toast = useToast()
+type ComponentProps = {
+  text: string
+  onRecordVideo: (uri: string) => unknown
+}
 
+export const Component = ({ text, onRecordVideo }: ComponentProps) => {
   const onRecord = useCallback(
     (value: { uri: string; codec?: VideoCodec | undefined }) => {
-      toast.show({ description: JSON.stringify(value) })
+      onRecordVideo(value.uri)
     },
-    [toast],
+    [onRecordVideo],
   )
 
   const { ref, endRecord, isRecording, startRecord } = useCamera({ onRecord })
@@ -25,29 +28,35 @@ export const Component = () => {
     }
   }, [endRecord, isRecording, startRecord])
 
-  const toggleType = useCallback(() => {
-    setType((prev) =>
-      prev === Camera.Constants.Type.back
-        ? Camera.Constants.Type.front
-        : Camera.Constants.Type.back,
-    )
-  }, [])
-
   return (
     <View alignItems="center" flex={1} justifyContent="center">
-      <Text fontSize={20} fontWeight="bold">
-        動画撮影
+      <Text fontSize={20} fontWeight="bold" px="4" py="2">
+        {text}
       </Text>
 
-      <Camera ref={ref} style={{ flex: 1, width: '100%' }} type={type}>
+      <Camera
+        ref={ref}
+        style={{ flex: 1, width: '100%' }}
+        type={Camera.Constants.Type.front}
+      >
         <View flex={1}>
           <Spacer />
 
-          <Button onPress={toggleType}>Flip</Button>
-
-          <Button onPress={toggleRecord}>
-            {isRecording ? '録画停止' : '録画開始'}
-          </Button>
+          <HStack justifyContent="center" py="6">
+            <IconButton
+              bg="white"
+              icon={
+                <Icon
+                  as={Entypo}
+                  color="red.400"
+                  name={isRecording ? 'controller-stop' : 'controller-record'}
+                  size="16"
+                />
+              }
+              onPress={toggleRecord}
+              rounded="full"
+            />
+          </HStack>
         </View>
       </Camera>
     </View>

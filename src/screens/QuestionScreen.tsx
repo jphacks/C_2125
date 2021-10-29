@@ -30,12 +30,8 @@ export const QuestionScreen = ({
 
   const time = isMorning ? '朝' : '夜'
 
-  const handlePressBack = useCallback(() => {
-    // TODO: チャットの画面に遷移させる
-  }, [])
-
   const handlePressAnswer = useCallback(() => {
-    // TODO: 動画の画面に遷移させる
+    navigation.push('QuestionCamera', { text: route.params.text })
   }, [])
 
   return (

@@ -12,8 +12,13 @@ import { ChatScreen, chatScreenOptions } from '../screens/ChatScreen'
 import { EmojiSelectScreen } from '../screens/EmojiSelectScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
+import { QuestionCameraPreviewScreen } from '../screens/QuestionCameraPreviewScreen'
 import { QuestionCameraScreen } from '../screens/QuestionCameraScreen'
 import { QuestionScreen } from '../screens/QuestionScreen'
+import {
+  questionVideoPreviewOptions,
+  QuestionVideoPreviewScreen,
+} from '../screens/QuestionVideoPreviewScreen'
 import { RequestPermissionModalScreen } from '../screens/RequestPermissionModalScreen'
 import { TabOneScreen, tabOneScreenOptions } from '../screens/TabOneScreen'
 import { TabTwoScreen, tabTwoScreenOptions } from '../screens/TabTwoScreen'
@@ -97,12 +102,6 @@ const BottomTabNavigator = () => {
         name="TabTwo"
         options={tabTwoScreenOptions}
       />
-
-      <BottomTab.Screen
-        component={QuestionCameraScreen}
-        initialParams={{ text: 'ほげほげ' }}
-        name="QuestionCamera"
-      />
     </BottomTab.Navigator>
   )
 }
@@ -136,6 +135,12 @@ const ChatNavigation = () => {
           name="VideoPreview"
           options={videoPreviewOptions}
         />
+
+        <ChatNavigator.Screen
+          component={QuestionVideoPreviewScreen}
+          name="QuestionVideoPreview"
+          options={questionVideoPreviewOptions}
+        />
       </ChatNavigator.Group>
 
       <ChatNavigator.Screen component={CameraScreen} name="Camera" />
@@ -143,6 +148,16 @@ const ChatNavigation = () => {
       <ChatNavigator.Screen
         component={CameraPreviewScreen}
         name="CameraPreview"
+      />
+
+      <ChatNavigator.Screen
+        component={QuestionCameraScreen}
+        name="QuestionCamera"
+      />
+
+      <ChatNavigator.Screen
+        component={QuestionCameraPreviewScreen}
+        name="QuestionCameraPreview"
       />
     </ChatNavigator.Navigator>
   )

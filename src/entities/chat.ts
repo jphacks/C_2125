@@ -6,12 +6,18 @@ export type ChatItemVideo = {
   path: string
 }
 
+export type ChatItemQuestionVideo = {
+  type: 'question-video'
+  path: string
+  text: string
+}
+
 export type ChatItemEmoji = {
   type: 'emoji'
   emoji: string
 }
 
-export type ChatItem = ChatItemVideo | ChatItemEmoji
+export type ChatItem = ChatItemVideo | ChatItemEmoji | ChatItemQuestionVideo
 
 export type Chat = {
   id: string

@@ -10,10 +10,14 @@ type ComponentProps = {
   onEndReached: () => unknown
   onPressQuestion: () => unknown
   onPressVideo?: (path: string) => unknown
+  onPressQuestionVideo?: (path: string, text: string) => unknown
 }
 
 const RenderItem: ListRenderItem<
-  ChatMessageProps & { onPressVideo?: (path: string) => unknown }
+  ChatMessageProps & {
+    onPressVideo?: (path: string) => unknown
+    onPressQuestionVideo?: (path: string, text: string) => unknown
+  }
 > = ({ item }) => <ChatMessage {...item} />
 
 const keyExtractor = (item: ChatMessageProps) => item.id
@@ -35,21 +39,20 @@ export const Component = ({
   onEndReached,
   onPressQuestion,
   onPressVideo,
+  onPressQuestionVideo,
 }: ComponentProps) => {
   const renderItem = useCallback<SectionListRenderItem<ChatMessageProps>>(
     ({ item, ...props }) => (
-      <RenderItem item={{ ...item, onPressVideo }} {...props} />
+      <RenderItem
+        item={{ ...item, onPressQuestionVideo, onPressVideo }}
+        {...props}
+      />
     ),
-    [onPressVideo],
+    [onPressQuestionVideo, onPressVideo],
   )
 
   return (
-    <View
-      // _contentContainerStyle={{ mb: '4', minW: '72', px: '20px' }}
-      bg="darkBlue.400"
-      flex={1}
-      justifyContent="center"
-    >
+    <View bg="darkBlue.400" flex={1} justifyContent="center">
       <HStack>
         <Button flex={1} fontSize={20} fontWeight="bold">
           俺らファミリー卍

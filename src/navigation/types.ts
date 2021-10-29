@@ -33,7 +33,6 @@ export type RootTabParamList = {
   TabOne: undefined
   TabTwo: undefined
   Chat: undefined
-  QuestionCamera: { text: string }
 }
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
@@ -48,7 +47,10 @@ export type ChatStackParamList = {
   EmojiSelect: undefined
   Camera: undefined
   CameraPreview: { uri: string }
+  QuestionCamera: { text: string }
+  QuestionCameraPreview: { text: string; uri: string }
   VideoPreview: { path: string }
+  QuestionVideoPreview: { path: string; text: string }
 }
 
 export type ChatStackScreenProps<Screen extends keyof ChatStackParamList> =

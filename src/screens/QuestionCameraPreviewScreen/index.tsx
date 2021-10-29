@@ -1,14 +1,14 @@
 import { Box, Text } from 'native-base'
 import { ChatStackScreenProps } from '../../navigation/types'
 import { Component } from './Component'
-import { useQuestionCameraScreen } from './hooks'
+import { useQuestionCameraPreviewScreen } from './hooks'
 
-export const QuestionCameraScreen = (
-  props: ChatStackScreenProps<'QuestionCamera'>,
+export const QuestionCameraPreviewScreen = (
+  props: ChatStackScreenProps<'QuestionCameraPreview'>,
 ) => {
   const { route } = props
-  const { isLoading, isAvailable, onRecordVideo } =
-    useQuestionCameraScreen(props)
+  const { isLoading, isAvailable, handleSubmitVideo } =
+    useQuestionCameraPreviewScreen(props)
 
   if (isLoading) {
     return (
@@ -25,6 +25,7 @@ export const QuestionCameraScreen = (
       </Box>
     )
   }
-
-  return <Component onRecordVideo={onRecordVideo} text={route.params.text} />
+  return (
+    <Component handleSubmitVideo={handleSubmitVideo} uri={route.params.uri} />
+  )
 }
