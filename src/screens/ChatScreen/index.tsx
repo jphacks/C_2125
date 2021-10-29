@@ -23,16 +23,16 @@ export const ChatScreen = ({ navigation }: ChatStackScreenProps<'Home'>) => {
 
   const goToQuestion = useCallback(() => {
     // ランダムに質問を取得する処理
-    const randomQuestion = sample(QUESTIONS)
+    const randomQuestion = sample(QUESTIONS) ?? ''
     navigation.push('Question', { text: randomQuestion })
   }, [navigation])
 
   return (
     <Component
-    onPressQuestion={goToQuestion}
       onEndReached={fetchMore}
       onPressCamera={goToCameraScreen}
       onPressEmojiSelect={goToEmojiSelect}
+      onPressQuestion={goToQuestion}
       sections={sections.map(({ data, title }) => ({
         data: data.map((chat) => ({
           createdAt: chat.createdAt,
