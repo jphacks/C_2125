@@ -46,7 +46,9 @@ export const ChatMessage = ({
         </Box>
       ) : item.type === 'emoji' ? (
         <Box>
-          <Text>{item.emoji}</Text>
+          <Text fontSize="7xl" p="3">
+            {item.emoji}
+          </Text>
         </Box>
       ) : null}
     </Box>
