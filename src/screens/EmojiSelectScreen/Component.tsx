@@ -30,7 +30,7 @@ export const Component = ({ onSubmitEmoji }: ComponentProps) => {
             {emoji}
           </Button>
 
-          <Text fontSize="xl" bold>
+          <Text bold fontSize="xl">
             絵文字をタップで送信
           </Text>
         </>
