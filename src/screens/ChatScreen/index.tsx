@@ -1,9 +1,11 @@
 import { FontAwesome } from '@expo/vector-icons'
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack'
+import sample from 'lodash.sample'
 import { Pressable } from 'native-base'
 import { useCallback } from 'react'
 import { PressableStateCallbackType } from 'react-native'
 import { MOCK_WORKSPACE_ID } from '../../constants/mock'
+import { QUESTIONS } from '../../constants/question'
 import { ChatStackScreenProps } from '../../navigation/types'
 import { Component } from './Component'
 import { useChatScreen } from './hooks'
@@ -19,8 +21,15 @@ export const ChatScreen = ({ navigation }: ChatStackScreenProps<'Home'>) => {
     navigation.push('Camera')
   }, [navigation])
 
+  const goToQuestion = useCallback(() => {
+    // ランダムに質問を取得する処理
+    const randomQuestion = sample(QUESTIONS)
+    navigation.push('Question', { text: randomQuestion })
+  }, [navigation])
+
   return (
     <Component
+    onPressQuestion={goToQuestion}
       onEndReached={fetchMore}
       onPressCamera={goToCameraScreen}
       onPressEmojiSelect={goToEmojiSelect}

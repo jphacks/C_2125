@@ -7,6 +7,7 @@ type ComponentProps = {
   onPressCamera: () => unknown
   sections: { data: ChatMessageProps[]; title: string }[]
   onEndReached: () => unknown
+  onPressQuestion: () => unknown
 }
 
 const renderItem: ListRenderItem<ChatMessageProps> = ({ item }) => (
@@ -30,6 +31,7 @@ export const Component = ({
   onPressCamera,
   sections,
   onEndReached,
+  onPressQuestion
 }: ComponentProps) => {
   return (
     <View bg="darkBlue.400" flex={1} justifyContent="center">
@@ -63,6 +65,7 @@ export const Component = ({
           </Text>
         </Button>
       </HStack>
+      <Button onPress={onPressQuestion}>質問に答える</Button>
     </View>
   )
 }
