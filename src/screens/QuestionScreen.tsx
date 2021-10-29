@@ -1,5 +1,13 @@
 import { Ionicons } from '@expo/vector-icons'
-import { Box, Button, Heading, Icon, Image, Stack, View } from 'native-base'
+import {
+  Box,
+  Button,
+  Heading,
+  Icon,
+  Image,
+  ScrollView,
+  Stack,
+} from 'native-base'
 import { useCallback, useState } from 'react'
 import { ChatStackScreenProps } from '../navigation/types'
 
@@ -31,21 +39,9 @@ export const QuestionScreen = ({
   }, [])
 
   return (
-    <View>
-      <Button
-        _text={{
-          fontSize: '2xl',
-        }}
-        colorScheme="blue"
-        mr="70%"
-        onPress={handlePressBack}
-        startIcon={<Icon as={Ionicons} name="arrow-back" />}
-      >
-        戻る
-      </Button>
-
+    <ScrollView flex={1}>
       <Stack alignItems="center" space={3}>
-        <Heading mt="5%" size="xl">
+        <Heading mt="4" size="xl">
           {`${year}年 ${month}月${day}日、${time}の質問`}
         </Heading>
 
@@ -65,11 +61,12 @@ export const QuestionScreen = ({
 
         <Image
           alt="もも"
-          h="25%"
+          h="24"
+          maxW="24"
           source={{
             uri: 'https://3.bp.blogspot.com/-Yvy09WjuJSs/Uxa-7Y_O1wI/AAAAAAAAd1A/SPVxb6GfFRA/s800/character_peach.png',
           }}
-          w="22%"
+          w="100%"
         />
       </Stack>
 
@@ -79,14 +76,14 @@ export const QuestionScreen = ({
         _text={{
           fontSize: '3xl',
         }}
-        colorScheme="blue"
+        colorScheme="darkBlue"
         endIcon={<Icon as={Ionicons} name="arrow-forward" size="xl" />}
-        height="15%"
+        height="24"
         mt="0"
         onPress={handlePressAnswer}
       >
-        質問に答える
+        動画を撮る
       </Button>
-    </View>
+    </ScrollView>
   )
 }
