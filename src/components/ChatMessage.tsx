@@ -1,10 +1,14 @@
+import { format } from 'date-fns'
 import { Avatar, Box, HStack, Text } from 'native-base'
+import { ChatItem } from '../entities/chat'
+import { ja } from '../lib/date-fns-locale'
 
-type ChatMessageProps = {
-  text: string
+export type ChatMessageProps = {
+  id: string
   username: string
   userAvatarUrl: string
-  createdAt: string
+  createdAt: Date
+  item: ChatItem
 }
 
 /**
@@ -12,7 +16,7 @@ type ChatMessageProps = {
  */
 
 export const ChatMessage = ({
-  text,
+  item,
   userAvatarUrl,
   username,
   createdAt,
@@ -32,13 +36,15 @@ export const ChatMessage = ({
         </Text>
 
         <Text alignSelf="flex-end" color="white">
-          {createdAt}
+          {format(createdAt, 'hh:mm', { locale: ja })}
         </Text>
       </HStack>
 
-      <Text color="white" fontSize="3xl">
-        {text}
-      </Text>
+      {item.type === 'video' ? (
+        <Box>
+          <Text>video</Text>
+        </Box>
+      ) : null}
     </Box>
   )
 }

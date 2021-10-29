@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app'
-import { initializeFirestore, setLogLevel } from 'firebase/firestore'
+import { initializeFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
-
-setLogLevel('debug')
 
 export const app = initializeApp({
   apiKey: 'AIzaSyBAGx9aQUD4s-bOogwc_WBT_Gz2fegc3Ow',
