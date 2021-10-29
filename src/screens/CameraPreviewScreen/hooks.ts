@@ -34,15 +34,6 @@ export const useCameraPreviewScreen = ({
         userId: MOCK_USER_ID,
       })
 
-      await addDoc(chatCollection(MOCK_WORKSPACE_ID), {
-        createdAt: serverTimestamp(),
-        id: '',
-        //
-        item: { emoji: '😀', type: 'emoji' },
-        updatedAt: serverTimestamp(),
-        userId: MOCK_USER_ID,
-      })
-
       navigation.popToTop()
     },
     [navigation],
