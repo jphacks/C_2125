@@ -1,15 +1,16 @@
 import { Button, HStack, ScrollView, Stack, Text, View } from 'native-base'
-import * as React from 'react'
 import { ChatMessage } from '../../components/ChatMessage'
 
 type ComponentProps = {
   testValue: string
   onPressEmojiSelect: () => unknown
+  onPressCamera: () => unknown
 }
 
 export const Component = ({
   testValue,
   onPressEmojiSelect,
+  onPressCamera,
 }: ComponentProps) => {
   return (
     <View bg="darkBlue.400" flex={1} justifyContent="center">
@@ -55,7 +56,7 @@ export const Component = ({
           </Text>
         </Button>
 
-        <Button colorScheme="green" flex={1} size="24">
+        <Button colorScheme="green" flex={1} onPress={onPressCamera} size="24">
           <Text color="white" fontSize="2xl">
             動画で返信
           </Text>

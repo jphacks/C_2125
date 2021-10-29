@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { initializeFirestore, setLogLevel } from 'firebase/firestore'
+import { getStorage } from 'firebase/storage'
 
 setLogLevel('debug')
 
@@ -16,3 +17,5 @@ export const app = initializeApp({
 export const firestore = initializeFirestore(app, {
   experimentalForceLongPolling: true,
 })
+
+export const storage = getStorage(app)

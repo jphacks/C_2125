@@ -1,12 +1,10 @@
 import { Box, Text } from 'native-base'
-import { RootTabScreenProps } from '../../navigation/types'
+import { ChatStackScreenProps } from '../../navigation/types'
 import { Component } from './Component'
-import { useQuestionCameraScreen } from './hooks'
+import { useCameraScreen } from './hooks'
 
-export const QuestionCameraScreen = (
-  props: RootTabScreenProps<'QuestionCamera'>,
-) => {
-  const { isLoading, isAvailable } = useQuestionCameraScreen(props)
+export const CameraScreen = (props: ChatStackScreenProps<'Camera'>) => {
+  const { isLoading, isAvailable, onRecordVideo } = useCameraScreen(props)
 
   if (isLoading) {
     return (
@@ -23,6 +21,5 @@ export const QuestionCameraScreen = (
       </Box>
     )
   }
-
-  return <Component />
+  return <Component onRecordVideo={onRecordVideo} />
 }

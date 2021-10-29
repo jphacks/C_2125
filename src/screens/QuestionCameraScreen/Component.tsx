@@ -1,8 +1,8 @@
 import { Camera } from 'expo-camera'
 import { VideoCodec } from 'expo-camera/build/Camera.types'
 import { Button, Spacer, Text, useToast, View } from 'native-base'
-import React, { useCallback, useState } from 'react'
-import { useCamera } from './hooks'
+import { useCallback, useState } from 'react'
+import { useCamera } from '../../hooks/useCamera'
 
 export const Component = () => {
   const [type, setType] = useState(Camera.Constants.Type.front)
