@@ -27,12 +27,20 @@ export const ChatScreen = ({ navigation }: ChatStackScreenProps<'Home'>) => {
     navigation.push('Question', { text: randomQuestion })
   }, [navigation])
 
+  const goToVideoPreview = useCallback(
+    (path: string) => {
+      navigation.push('VideoPreview', { path })
+    },
+    [navigation],
+  )
+
   return (
     <Component
       onEndReached={fetchMore}
       onPressCamera={goToCameraScreen}
       onPressEmojiSelect={goToEmojiSelect}
       onPressQuestion={goToQuestion}
+      onPressVideo={goToVideoPreview}
       sections={sections.map(({ data, title }) => ({
         data: data.map((chat) => ({
           createdAt: chat.createdAt,

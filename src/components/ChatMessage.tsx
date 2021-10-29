@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { Avatar, Box, HStack, Text } from 'native-base'
 import { ChatItem } from '../entities/chat'
 import { ja } from '../lib/date-fns-locale'
+import { ChatVideoMessage } from './ChatVideoMessage'
 
 export type ChatMessageProps = {
   id: string
@@ -9,17 +10,15 @@ export type ChatMessageProps = {
   userAvatarUrl: string
   createdAt: Date
   item: ChatItem
+  onPressVideo?: (path: string) => unknown
 }
-
-/**
- *  横並び: HStack で囲む
- */
 
 export const ChatMessage = ({
   item,
   userAvatarUrl,
   username,
   createdAt,
+  onPressVideo,
 }: ChatMessageProps) => {
   return (
     <Box>
@@ -41,8 +40,8 @@ export const ChatMessage = ({
       </HStack>
 
       {item.type === 'video' ? (
-        <Box>
-          <Text>video</Text>
+        <Box px="7">
+          <ChatVideoMessage item={item} onPress={onPressVideo} />
         </Box>
       ) : item.type === 'emoji' ? (
         <Box>

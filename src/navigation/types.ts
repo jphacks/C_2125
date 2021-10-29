@@ -48,6 +48,7 @@ export type ChatStackParamList = {
   EmojiSelect: undefined
   Camera: undefined
   CameraPreview: { uri: string }
+  VideoPreview: { path: string }
 }
 
 export type ChatStackScreenProps<Screen extends keyof ChatStackParamList> =

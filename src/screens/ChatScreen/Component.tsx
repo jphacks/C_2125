@@ -1,5 +1,6 @@
 import { Button, HStack, SectionList, Text, View } from 'native-base'
-import { ListRenderItem } from 'react-native'
+import { useCallback } from 'react'
+import { ListRenderItem, SectionListRenderItem } from 'react-native'
 import { ChatMessage, ChatMessageProps } from '../../components/ChatMessage'
 
 type ComponentProps = {
@@ -8,11 +9,12 @@ type ComponentProps = {
   sections: { data: ChatMessageProps[]; title: string }[]
   onEndReached: () => unknown
   onPressQuestion: () => unknown
+  onPressVideo?: (path: string) => unknown
 }
 
-const renderItem: ListRenderItem<ChatMessageProps> = ({ item }) => (
-  <ChatMessage {...item} />
-)
+const RenderItem: ListRenderItem<
+  ChatMessageProps & { onPressVideo?: (path: string) => unknown }
+> = ({ item }) => <ChatMessage {...item} />
 
 const keyExtractor = (item: ChatMessageProps) => item.id
 
@@ -32,7 +34,15 @@ export const Component = ({
   sections,
   onEndReached,
   onPressQuestion,
+  onPressVideo,
 }: ComponentProps) => {
+  const renderItem = useCallback<SectionListRenderItem<ChatMessageProps>>(
+    ({ item, ...props }) => (
+      <RenderItem item={{ ...item, onPressVideo }} {...props} />
+    ),
+    [onPressVideo],
+  )
+
   return (
     <View bg="darkBlue.400" flex={1} justifyContent="center">
       <HStack>
