@@ -2,6 +2,7 @@ import { Button, HStack, SectionList, Text, View } from 'native-base'
 import { useCallback } from 'react'
 import { ListRenderItem, SectionListRenderItem } from 'react-native'
 import { ChatMessage, ChatMessageProps } from '../../components/ChatMessage'
+import { TabBarIcon } from '../../components/TabBarIcon'
 
 type ComponentProps = {
   onPressEmojiSelect: () => unknown
@@ -94,4 +95,11 @@ export const Component = ({
       </Button>
     </View>
   )
+}
+
+export const ChatScreenOptions = {
+  tabBarIcon: ({ color }: { color: string }) => (
+    <TabBarIcon color={color} name="comment" />
+  ),
+  title: 'Chat',
 }

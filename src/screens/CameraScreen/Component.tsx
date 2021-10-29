@@ -3,6 +3,7 @@ import { Camera } from 'expo-camera'
 import { VideoCodec } from 'expo-camera/build/Camera.types'
 import { Box, HStack, Icon, IconButton, Spacer } from 'native-base'
 import { useCallback } from 'react'
+import { TabBarIcon } from '../../components/TabBarIcon'
 import { useCamera } from '../../hooks/useCamera'
 
 type ComponentProps = {
@@ -54,4 +55,11 @@ export const Component = ({ onRecordVideo }: ComponentProps) => {
       </Camera>
     </Box>
   )
+}
+
+export const QuestionCameraScreenOptions = {
+  tabBarIcon: ({ color }: { color: string }) => (
+    <TabBarIcon color={color} name="video-camera" />
+  ),
+  title: 'Question Camera',
 }
