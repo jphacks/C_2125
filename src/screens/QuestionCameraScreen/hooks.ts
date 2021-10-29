@@ -1,21 +1,30 @@
 import { useCallback } from 'react'
 import { usePermission } from '../../hooks/usePermission'
-import { PermissionType, RootTabScreenProps } from '../../navigation/types'
+import { ChatStackScreenProps, PermissionType } from '../../navigation/types'
 
-export const useQuestionCameraScreen = (
-  options: RootTabScreenProps<'QuestionCamera'>,
-) => {
+export const useQuestionCameraScreen = ({
+  navigation,
+  route,
+}: ChatStackScreenProps<'QuestionCamera'>) => {
   const requestPermission = useCallback(
     (type: PermissionType) => {
-      options.navigation.push('RequestPermissionModalScreen', { type })
+      navigation.push('RequestPermissionModalScreen', { type })
     },
-    [options.navigation],
+    [navigation],
   )
 
   const { isAvailable, isLoading } = usePermission({ requestPermission })
 
+  const onRecordVideo = useCallback(
+    (uri: string) => {
+      navigation.push('QuestionCameraPreview', { text: route.params.text, uri })
+    },
+    [navigation, route.params.text],
+  )
+
   return {
     isAvailable,
     isLoading,
+    onRecordVideo,
   }
 }
