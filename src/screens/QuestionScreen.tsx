@@ -62,21 +62,21 @@ export const QuestionScreen = ({
         <Image
           alt="もも"
           h="24"
+          maxW="24"
           source={{
             uri: 'https://3.bp.blogspot.com/-Yvy09WjuJSs/Uxa-7Y_O1wI/AAAAAAAAd1A/SPVxb6GfFRA/s800/character_peach.png',
           }}
           w="100%"
-          maxW="24"
         />
       </Stack>
 
       {/* ref: https://docs.nativebase.io/button */}
 
       <Button
-        colorScheme="darkBlue"
         _text={{
           fontSize: '3xl',
         }}
+        colorScheme="darkBlue"
         endIcon={<Icon as={Ionicons} name="arrow-forward" size="xl" />}
         height="24"
         mt="0"
