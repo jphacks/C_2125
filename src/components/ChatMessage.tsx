@@ -44,6 +44,10 @@ export const ChatMessage = ({
         <Box>
           <Text>video</Text>
         </Box>
+      ) : item.type === 'emoji' ? (
+        <Box>
+          <Text>{item.emoji}</Text>
+        </Box>
       ) : null}
     </Box>
   )
