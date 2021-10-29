@@ -3,14 +3,23 @@ import { Pressable } from 'native-base'
 import { useCallback } from 'react'
 import { PressableStateCallbackType } from 'react-native'
 import { TabBarIcon } from '../../components/TabBarIcon'
-import { RootTabScreenProps } from '../../navigation/types'
+import {
+  ChatStackScreenProps,
+  RootTabScreenProps,
+} from '../../navigation/types'
 import { Component } from './Component'
 import { useChatScreen } from './hooks'
 
-export const ChatScreen = () => {
+export const ChatScreen = ({ navigation }: ChatStackScreenProps<'Home'>) => {
   const { testValue } = useChatScreen()
 
-  return <Component testValue={testValue} />
+  const goToEmojiSelect = useCallback(() => {
+    navigation.push('EmojiSelect')
+  }, [navigation])
+
+  return (
+    <Component onPressEmojiSelect={goToEmojiSelect} testValue={testValue} />
+  )
 }
 
 const HeaderRight = ({ navigation }: RootTabScreenProps<'Chat'>) => {

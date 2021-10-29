@@ -45,6 +45,7 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
 export type ChatStackParamList = {
   Home: undefined
   Question: { text: string }
+  EmojiSelect: undefined
 }
 
 export type ChatStackScreenProps<Screen extends keyof ChatStackParamList> =
