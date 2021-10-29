@@ -1,12 +1,32 @@
 import { FontAwesome } from '@expo/vector-icons'
-import { Pressable, Text, View } from 'native-base'
+import {
+  Button,
+  Pressable,
+  Text,
+  useDisclose,
+  useToast,
+  View,
+} from 'native-base'
 import { useCallback } from 'react'
 import { PressableStateCallbackType } from 'react-native'
 import { EditScreenInfo } from '../components/EditScreenInfo'
+import { EmojiSelectModal } from '../components/EmojiSelectModal'
 import { TabBarIcon } from '../components/TabBarIcon'
 import { RootTabScreenProps } from '../navigation/types'
 
 export const TabOneScreen = ({ navigation }: RootTabScreenProps<'TabOne'>) => {
+  const { isOpen, onOpen, onClose } = useDisclose()
+  const toast = useToast()
+
+  const handleSelectEmoji = useCallback(
+    (emoji: string) => {
+      toast.show({
+        description: emoji,
+      })
+    },
+    [toast],
+  )
+
   return (
     <View alignItems="center" flex={1} justifyContent="center">
       <Text fontSize={20} fontWeight="bold">
@@ -14,6 +34,14 @@ export const TabOneScreen = ({ navigation }: RootTabScreenProps<'TabOne'>) => {
       </Text>
 
       <View h="1px" my="30px" w="80%" />
+
+      <Button onPress={onOpen}>絵文字を選択する</Button>
+
+      <EmojiSelectModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onSelectEmoji={handleSelectEmoji}
+      />
 
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />
     </View>

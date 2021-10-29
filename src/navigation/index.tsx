@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { ChatScreen, chatScreenOptions } from '../screens/ChatScreen'
+import { EmojiSelectScreen } from '../screens/EmojiSelectScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
 import { QuestionCameraScreen } from '../screens/QuestionCameraScreen'
@@ -108,7 +109,7 @@ const BottomTabNavigator = () => {
 const ChatNavigator = createNativeStackNavigator<ChatStackParamList>()
 const ChatNavigation = () => {
   return (
-    <ChatNavigator.Navigator initialRouteName="Question">
+    <ChatNavigator.Navigator initialRouteName="Home">
       <ChatNavigator.Screen component={ChatScreen} name="Home" />
 
       <ChatNavigator.Screen
@@ -118,6 +119,13 @@ const ChatNavigation = () => {
         }}
         name="Question"
       />
+
+      <ChatNavigator.Group screenOptions={{ presentation: 'modal' }}>
+        <ChatNavigator.Screen
+          component={EmojiSelectScreen}
+          name="EmojiSelect"
+        />
+      </ChatNavigator.Group>
     </ChatNavigator.Navigator>
   )
 }
