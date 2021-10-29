@@ -9,7 +9,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { ChatScreen, chatScreenOptions } from '../screens/ChatScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
+import { QuestionCameraScreen } from '../screens/QuestionCameraScreen'
 import { QuestionScreen } from '../screens/QuestionScreen'
+import { RequestPermissionModalScreen } from '../screens/RequestPermissionModalScreen'
 import { TabOneScreen, tabOneScreenOptions } from '../screens/TabOneScreen'
 import { TabTwoScreen, tabTwoScreenOptions } from '../screens/TabTwoScreen'
 import LinkingConfiguration from './LinkingConfiguration'
@@ -50,6 +52,11 @@ const RootNavigator = () => {
 
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen component={ModalScreen} name="Modal" />
+
+        <Stack.Screen
+          component={RequestPermissionModalScreen}
+          name="RequestPermissionModalScreen"
+        />
       </Stack.Group>
     </Stack.Navigator>
   )
@@ -87,6 +94,12 @@ const BottomTabNavigator = () => {
         component={TabTwoScreen}
         name="TabTwo"
         options={tabTwoScreenOptions}
+      />
+
+      <BottomTab.Screen
+        component={QuestionCameraScreen}
+        initialParams={{ text: 'ほげほげ' }}
+        name="QuestionCamera"
       />
     </BottomTab.Navigator>
   )

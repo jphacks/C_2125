@@ -9,6 +9,9 @@ export const useCheckIsMounted = () => {
 
   useEffect(() => {
     isMountedRef.current = true
+    return () => {
+      isMountedRef.current = false
+    }
   }, [])
 
   return checkIsMounted
