@@ -24,10 +24,10 @@ export const chatCollection = (workspaceId: string) => {
     fromFirestore: (snapshot) => {
       const data = snapshot.data()
       return {
-        createdAt: data.createdAt.toDate(),
+        createdAt: data.createdAt?.toDate() ?? new Date(),
         id: snapshot.id,
         item: data.item,
-        updatedAt: data.updatedAt.toDate(),
+        updatedAt: data.updatedAt?.toDate() ?? new Date(),
         userId: data.userId,
       }
     },

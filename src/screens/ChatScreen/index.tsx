@@ -3,12 +3,13 @@ import { NativeStackNavigationOptions } from '@react-navigation/native-stack'
 import { Pressable } from 'native-base'
 import { useCallback } from 'react'
 import { PressableStateCallbackType } from 'react-native'
+import { MOCK_WORKSPACE_ID } from '../../constants/mock'
 import { ChatStackScreenProps } from '../../navigation/types'
 import { Component } from './Component'
 import { useChatScreen } from './hooks'
 
 export const ChatScreen = ({ navigation }: ChatStackScreenProps<'Home'>) => {
-  const { testValue } = useChatScreen()
+  const { sections, fetchMore } = useChatScreen(MOCK_WORKSPACE_ID)
 
   const goToEmojiSelect = useCallback(() => {
     navigation.push('EmojiSelect')
@@ -20,9 +21,20 @@ export const ChatScreen = ({ navigation }: ChatStackScreenProps<'Home'>) => {
 
   return (
     <Component
+      onEndReached={fetchMore}
       onPressCamera={goToCameraScreen}
       onPressEmojiSelect={goToEmojiSelect}
-      testValue={testValue}
+      sections={sections.map(({ data, title }) => ({
+        data: data.map((chat) => ({
+          createdAt: chat.createdAt,
+          id: chat.id,
+          item: chat.item,
+          userAvatarUrl:
+            'https://pbs.twimg.com/profile_images/1309797238651060226/18cm6VhQ_400x400.jpg',
+          username: 'ゆうたくん',
+        })),
+        title,
+      }))}
     />
   )
 }
