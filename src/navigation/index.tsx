@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CameraPreviewScreen } from '../screens/CameraPreviewScreen'
 import { CameraScreen } from '../screens/CameraScreen'
 import { ChatScreen, chatScreenOptions } from '../screens/ChatScreen'
+import { ChatScreenIconOptions } from '../screens/ChatScreen/Component'
 import { EmojiSelectScreen } from '../screens/EmojiSelectScreen'
 import { ModalScreen } from '../screens/ModalScreen'
 import { NotFoundScreen } from '../screens/NotFoundScreen'
@@ -89,7 +90,11 @@ const BottomTabNavigator = () => {
         // tabBarActiveTintColor: Colors[colorScheme].tint,
       }}
     >
-      <BottomTab.Screen component={ChatNavigation} name="Chat" />
+      <BottomTab.Screen
+        component={ChatNavigation}
+        name="Chat"
+        options={ChatScreenIconOptions}
+      />
 
       <BottomTab.Screen
         component={TabOneScreen}
