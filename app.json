@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "temp",
-    "owner": "jphacks-c_2125",
-    "slug": "temp",
+    "name": "jphacks-c_2125",
+    "owner": "yutaura",
+    "slug": "jphacks-c_2125",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
@@ -36,6 +36,7 @@
     },
     "web": {
       "favicon": "./src/assets/images/favicon.png"
-    }
+    },
+    "githubUrl": "https://github.com/jphacks/C_2125/"
   }
 }
